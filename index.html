@@ -371,9 +371,9 @@ button:not(.primary){
 (function(){
   const letter = document.getElementById('letter-original');
   let html = letter.innerHTML;
-  html = html.replace('<u></u>','<u id="preview-startDate"></u>')
-             .replace('<u></u>','<u id="preview-endDate"></u>')
-             .replace('<u></u>','<u id="preview-engageDate"></u>');
+  html = html.replace('<u></u>', '<u id="preview-startDate"></u>')
+             .replace('<u></u>', '<u id="preview-endDate"></u>')
+             .replace('<u></u>', '<u id="preview-engageDate"></u>');
   letter.innerHTML = html;
 
   const emp = document.getElementById('employeeName'),
@@ -439,50 +439,52 @@ button:not(.primary){
   document.getElementById('clear-sig').addEventListener('click',()=>{ctx.clearRect(0,0,canvas.width,canvas.height);sigImg.style.display='none';sigImg.src='';});
   document.getElementById('save-sig').addEventListener('click',()=>{sigImg.src=canvas.toDataURL('image/png');sigImg.style.display='block';});
 
-  // 🔽 UPDATED PDF GENERATION SECTION 🔽
+  // ✅ Generate PDF with fixed A4 layout (same look on mobile & desktop)
   document.getElementById('generateBtn').addEventListener('click',async()=>{
     if(!sigImg.src){
       sigImg.src=canvas.toDataURL('image/png');
       sigImg.style.display='block';
     }
 
-    const leftPanel=document.getElementById('left-panel');
-    const preview=document.getElementById('preview');
-    const name=(emp.value.trim()||'Unknown').replace(/\s+/g,'_');
+    const preview = document.getElementById('preview');
+    const leftPanel = document.getElementById('left-panel');
+    const name = (emp.value.trim() || 'Unknown').replace(/\s+/g,'_');
 
-    // Force desktop A4 layout before generating
+    // Hide left panel
+    leftPanel.style.display='none';
+
+    // ✅ Force fixed A4 width (same as desktop)
     const prevWidth = preview.style.width;
-    const prevTransform = preview.style.transform;
+    const prevMaxWidth = preview.style.maxWidth;
     preview.style.width = '21cm';
     preview.style.maxWidth = '21cm';
     preview.style.margin = '0 auto';
     preview.style.transform = 'none';
 
-    leftPanel.style.display='none';
-
-    const opt={
-      margin:0,
-      filename:`EngagementLetter_${name}.pdf`,
-      image:{type:'jpeg',quality:0.98},
-      html2canvas:{scale:2,logging:false,useCORS:true,scrollY:0},
-      jsPDF:{unit:'cm',format:'a4',orientation:'portrait'},
-      pagebreak:{mode:['css','legacy']}
+    const opt = {
+      margin: [0, 0, 0, 0],
+      filename: `EngagementLetter_${name}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['css', 'legacy'] }
     };
 
-    try{
+    try {
       await html2pdf().set(opt).from(preview).save();
-    }catch(err){
+    } catch (err) {
       console.error(err);
       alert('Error generating PDF.');
     }
 
-    // Restore layout
+    // ✅ Restore styles
     preview.style.width = prevWidth;
-    preview.style.transform = prevTransform;
+    preview.style.maxWidth = prevMaxWidth;
     leftPanel.style.display='block';
   });
 })();
 </script>
+
 
 </body>
 </html>
