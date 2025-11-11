@@ -204,6 +204,61 @@ button:not(.primary){
   .sign-box{
     width:100%;
   }
+  /* -------- PDF / Print Mode: Always Use Desktop A4 Style -------- */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .app {
+    flex-direction: row !important;
+  }
+
+  .panel-left {
+    display: none !important; /* hide input panel */
+  }
+
+  .panel-right {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .a4-sheet {
+    width: 21cm !important;
+    min-height: 29.7cm !important;
+    margin: 0 auto !important;
+    box-shadow: none !important;
+    border: none !important;
+    page-break-after: always !important;
+  }
+
+  .header-row {
+    flex-direction: row !important;
+    text-align: left !important;
+  }
+
+  .body {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+}
+
+/* -------- Force desktop layout inside PDF even on mobile -------- */
+#preview {
+  width: 21cm !important;
+  min-height: 29.7cm !important;
+  margin: 0 auto;
+  background: white;
+}
+
+@media screen and (max-width: 900px) {
+  #preview {
+    transform: scale(1);
+    transform-origin: top center;
+  }
+}
+
 }
 </style>
 </head>
@@ -384,16 +439,50 @@ button:not(.primary){
   document.getElementById('clear-sig').addEventListener('click',()=>{ctx.clearRect(0,0,canvas.width,canvas.height);sigImg.style.display='none';sigImg.src='';});
   document.getElementById('save-sig').addEventListener('click',()=>{sigImg.src=canvas.toDataURL('image/png');sigImg.style.display='block';});
 
+  // 🔽 UPDATED PDF GENERATION SECTION 🔽
   document.getElementById('generateBtn').addEventListener('click',async()=>{
-    if(!sigImg.src){sigImg.src=canvas.toDataURL('image/png');sigImg.style.display='block';}
-    document.getElementById('left-panel').style.display='none';
+    if(!sigImg.src){
+      sigImg.src=canvas.toDataURL('image/png');
+      sigImg.style.display='block';
+    }
+
+    const leftPanel=document.getElementById('left-panel');
+    const preview=document.getElementById('preview');
     const name=(emp.value.trim()||'Unknown').replace(/\s+/g,'_');
-    const opt={margin:1,filename:`EngagementLetter_${name}.pdf`,image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,logging:false,useCORS:true},jsPDF:{unit:'cm',format:'a4',orientation:'portrait'}};
-    try{await html2pdf().set(opt).from(document.getElementById('preview')).save();}
-    catch(err){console.error(err);alert('Error generating PDF.');}
-    document.getElementById('left-panel').style.display='block';
+
+    // Force desktop A4 layout before generating
+    const prevWidth = preview.style.width;
+    const prevTransform = preview.style.transform;
+    preview.style.width = '21cm';
+    preview.style.maxWidth = '21cm';
+    preview.style.margin = '0 auto';
+    preview.style.transform = 'none';
+
+    leftPanel.style.display='none';
+
+    const opt={
+      margin:0,
+      filename:`EngagementLetter_${name}.pdf`,
+      image:{type:'jpeg',quality:0.98},
+      html2canvas:{scale:2,logging:false,useCORS:true,scrollY:0},
+      jsPDF:{unit:'cm',format:'a4',orientation:'portrait'},
+      pagebreak:{mode:['css','legacy']}
+    };
+
+    try{
+      await html2pdf().set(opt).from(preview).save();
+    }catch(err){
+      console.error(err);
+      alert('Error generating PDF.');
+    }
+
+    // Restore layout
+    preview.style.width = prevWidth;
+    preview.style.transform = prevTransform;
+    leftPanel.style.display='block';
   });
 })();
 </script>
+
 </body>
 </html>
