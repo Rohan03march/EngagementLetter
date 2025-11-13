@@ -141,13 +141,27 @@ button:not(.primary){
   position:relative;
   z-index:2;
 }
-.sign-box{width:48%;font-size:0.36cm;}
+.sign-box{width:28%;font-size:0.36cm;}
 .sign-image{
   display:block;
   margin-top:0.25cm;
   max-width:8.4cm;
   height:auto;
   border:none;
+}
+.footer {
+  position: absolute;
+  bottom: 0.8cm;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.35cm;
+  color: #333;
+}
+.footer hr {
+  border: 0;
+  border-top: 0.2px solid #aaa;
+  margin-bottom: 0.2cm;
 }
 @media print{
   .panel-left{display:none!important;}
@@ -290,81 +304,96 @@ button:not(.primary){
 
   <!-- Right Preview -->
   <div class="panel-right">
-    <div id="preview">
-      <!-- PAGE 1 -->
-      <div class="a4-sheet" id="page1">
-        <div class="header-row">
-          <div class="header-left">
-            <img src="https://res.cloudinary.com/dtwcxssvj/image/upload/v1746523573/SourceOneLogo_ubsxye.png" alt="logo">
-          </div>
-          <div class="header-right">
-            <div><b>Email : sourceonelokesh@rediffmail.com</b></div>
-            <div><b>sourceone.chandan@gmail.com</b></div>
-            <div class="mobile">Mobile: 9741965944, 080-23476868</div>
-          </div>
+  <div id="preview">
+    <!-- PAGE 1 -->
+    <div class="a4-sheet" id="page1">
+      <div class="header-row">
+        <div class="header-left">
+          <img src="https://res.cloudinary.com/dtwcxssvj/image/upload/v1746523573/SourceOneLogo_ubsxye.png" alt="logo">
         </div>
-
-        <div id="letter-original" class="body">
-          <p><b>1:</b> Your contract will commence from <b><u></u></b> and expire on <b><u></u></b> during which you will render services ... executed by you on<b><u></u></b> ...</p>
-          <p style="text-align:center;"><b>You hereby agree to be liable for the following terms and conditions:</b></p>
-          <ol>
-            <li>Fully perform the services, in a professional manner, at the Client’s location until the completion of the term of the Work assignment.</li>
-            <li>During the term of the work assignment, render services exclusively to the Client and such performance shall not be inconsistent with any obligation you may have to other third parties.</li>
-            <li>Not engage in any conduct which is detrimental to the interest of the Client or SOURCE ONE.</li>
-            <li>Not receive any payments of any nature directly or indirectly from the Client unless agreed to by SOURCE ONE.</li>
-            <li>Neither directly nor indirectly offers you for employment with the Client or its affiliates during the period of the work assignment without prior permission of SOURCE ONE.</li>
-            <li>Extend all cooperation to the Client’s employees, consultants, representatives, etc. and do all such things as may be necessary and comply with all terms of the Appointment letter so as to effectively under take the work.</li>
-            <li>Report and be present at the designated location during the working hours mentioned herein and abide by the rules and regulations as required by the Client.</li>
-            <li>Comply with the safety, health and other rules and regulations of SOURCE ONE and the SOURCE ONE Client that you have been made aware of.</li>
-            <li>During the course of your contract, you can be transferred to allocation within the territory of India as and when required by SOURCE ONE for executing the services provided herein.</li>
-          </ol>
-
-          <p><b>2:</b> Should you be selected to perform the Work Assignment, the nature of your relationship with SOURCE ONE will be that of a Contract of Service for a fixed period. By executing this letter of engagement neither do we offer you employments with SOURCE ONE nor do you become an employee of SOURCE ONE. Upon expiry or termination of the Work Assignment, your employment with SOURCE ONE shall stand terminated forth with.</p>
-          <p><b>3:</b> If the employee desires to leave the company, he/ she needs to serve notice period of ‘15’ days in prior and give a written letter. If Employeeis not serving complete notice period then short served days will be deducted from his/her salary, employee will be eligible for salary only if he/she works for minimum 7 days with us.</p>
-          <p><b>4:</b> The Employee is responsible for all company assets under their supervision. They are account able for any asset loss or damage that occurs during their presence or under their process control, even if not directly involved. The Company may recover the cost of lost or damaged assets from the Employee's remuneration. The Employee will be notified of any recovery decision.</p>
-          <p><b>5:</b> Termination of this letter of engagement shall not affect the obligations of the parties that have been incurred prior to such termination and SOURCE ONE shall promptly settle all your dues after making the applicable deductions.</p>
-          <p><b>6:</b> You agree to defend, indemnify and hold SOURCE ONE or the Client harmless from any and all claims, damages, liability, attorney’s fees and expenses on account of your failure to satisfy any of your obligations under this work assignment letter or for misconduct or for violation of any law or creation of any legal liability by you.</p>
-          <p><b>7:</b> Any dispute between you and SOURCE ONE shall be referred to a sole arbitrator appointed by SOURCE ONE the arbitration shall be conducted in English language, in accordance with the Arbitration and Conciliation Act 1996, at Bangalore, Karnataka, India. This Engagement Letter shall be governed by the laws of India.</p>
+        <div class="header-right">
+          <div><b>Email : sourceonelokesh@rediffmail.com</b></div>
+          <div><b>sourceone.chandan@gmail.com</b></div>
+          <div class="mobile">Mobile: 9741965944, 080-23476868</div>
         </div>
       </div>
 
-      <!-- PAGE 2 -->
-      <div class="a4-sheet page-break" id="page2">
-        <div class="header-row">
-          <div class="header-left"><img src="https://res.cloudinary.com/dtwcxssvj/image/upload/v1746523573/SourceOneLogo_ubsxye.png" alt="logo"></div>
-          <div class="header-right">
-            <div><b>Email : sourceonelokesh@rediffmail.com</b></div>
-            <div><b>sourceone.chandan@gmail.com</b></div>
-            <div class="mobile">Mobile: 9741965944, 080-23476868</div>
-          </div>
-        </div>
+      <div id="letter-original" class="body">
+        <p><b>1:</b> Your contract will commence from <b><u></u></b> and expire on <b><u></u></b> during which you will render services ... executed by you on<b><u></u></b> ...</p>
+        <p style="text-align:center;"><b>You hereby agree to be liable for the following terms and conditions:</b></p>
+        <ol>
+          <li>Fully perform the services, in a professional manner, at the Client’s location until the completion of the term of the Work assignment.</li>
+          <li>During the term of the work assignment, render services exclusively to the Client and such performance shall not be inconsistent with any obligation you may have to other third parties.</li>
+          <li>Not engage in any conduct which is detrimental to the interest of the Client or SOURCE ONE.</li>
+          <li>Not receive any payments of any nature directly or indirectly from the Client unless agreed to by SOURCE ONE.</li>
+          <li>Neither directly nor indirectly offers you for employment with the Client or its affiliates during the period of the work assignment without prior permission of SOURCE ONE.</li>
+          <li>Extend all cooperation to the Client’s employees, consultants, representatives, etc. and do all such things as may be necessary and comply with all terms of the Appointment letter so as to effectively under take the work.</li>
+          <li>Report and be present at the designated location during the working hours mentioned herein and abide by the rules and regulations as required by the Client.</li>
+          <li>Comply with the safety, health and other rules and regulations of SOURCE ONE and the SOURCE ONE Client that you have been made aware of.</li>
+          <li>During the course of your contract, you can be transferred to allocation within the territory of India as and when required by SOURCE ONE for executing the services provided herein.</li>
+        </ol>
 
-        <div class="body">
-          <p><b>9:</b> Details of your salary breakup will be as per the Annexure attached herein. You hereby authorize SOURCE ONE to make all salary payments required to be made to you by SOURCE ONE including all reimbursements either by way of Cheque or by directly crediting the amounts to your bank account.</p>
-          <p><b>10:</b> You shall be subject to background check and in the even the background check is negative, the company reserves the right to terminate your employment without any further notice.</p>
-          <p><b>11:</b> Please note that we want to keep payout time cycle of 21st to 20th of every month, salary payout will happen by 9th of next month.</p>
-          <p><b>12:</b> You will be entitled to an employer’s contribution of Provident fund to the extent of 12% of your basic salary and applicable ESI contribution. You will also be covered under Medical and Accident Insurance and will be entitled to all other statutory benefits whichever is applicable during the contract period. It is hereby clarified that if you fail to submit the ESIC, PF, Gratuity nomination forms together with any other document as required under the applicable labor legislations, SOURCE ONE shall not incur any liability with regards to any Claims under the said applicable labor legislations.</p>
-          <p><b>13:</b> In addition to the terms contained herein, your relationship with SOURCE ONE may be subject to such other additional terms and conditions as may be communicated to you from time to time in writing by SOURCE ONE and you hereby agree to have read and clearly understood the terms of employment provided in the Service Rules, which is attached herein.</p>
-          <p><b>14:</b> During your employment with SOURCE ONE, if we find any irregularity or insufficiency in the documents submitted by you, this Appointment Letter would stand cancelled / revoked.</p>
-          <p><b>15:</b> The nature of your relationship with SOURCE ONE will be that of contract of service from to Upon expiry or termination of the work Assignment, your employment with SOURCE ONE shall stand terminated forthwith.</p>
-          <p><b>16:</b> You shall not, either during or after termination of your employment with client give out to any third part by word of mouth or otherwise, the Proprietary and/or Confidential Information of the Company, that shall include but not limited to all information, software (whether in object or source code), statistics, data, data base, knowledge, trade secrets, inventions, products detail, know- how, formula, processes, designs, drawings, charts, maps, concepts, ideas, systems, project plans, business plans, client details, security information, any other creations of what so ever nature, kind or description, organizational matters pertaining to company or our client. Further, you shall not at any time, whether during or after the period of employment, use such Proprietary or Confidential information or any part thereof, for your own benefit or for the benefit to fan person, firm, company or other legal entity other that our client. This non-disclosure obligations enumerated above shall be binding on you at all times, irrespective of whether you continue to be employed by the company or not.</p>
-          <p><b>17:</b> This appointment letter shall be co-terminus with the agreement we have with our client.</p>
-          <div class="sign-row">
-            <div class="sign-box">
-              Employee Name: <b id="preview-employee-name">________</b>
-              <img id="employee-signature-image" class="sign-image" src="" style="display:none;">
-              <div style="margin-top:0.1cm;font-size:0.32cm;color:black;"><b>Accepted and Agreed</b></div>
-            </div>
-            <div class="sign-box" style="text-align:right;">
-              <div>Source One</div><b>Chandan Lokesh</b>
-              <img id="proprietor-signature" class="sign-image" src="signature.png">
-              <div style="margin-top:0.1cm;font-size:0.32cm;color:black;"><b>Proprietor</b></div>
-            </div>
+        <p><b>2:</b> Should you be selected to perform the Work Assignment, the nature of your relationship with SOURCE ONE will be that of a Contract of Service for a fixed period. By executing this letter of engagement neither do we offer you employments with SOURCE ONE nor do you become an employee of SOURCE ONE. Upon expiry or termination of the Work Assignment, your employment with SOURCE ONE shall stand terminated forth with.</p>
+        <p><b>3:</b> If the employee desires to leave the company, he/ she needs to serve notice period of ‘15’ days in prior and give a written letter. If Employeeis not serving complete notice period then short served days will be deducted from his/her salary, employee will be eligible for salary only if he/she works for minimum 7 days with us.</p>
+        <p><b>4:</b> The Employee is responsible for all company assets under their supervision. They are account able for any asset loss or damage that occurs during their presence or under their process control, even if not directly involved. The Company may recover the cost of lost or damaged assets from the Employee's remuneration. The Employee will be notified of any recovery decision.</p>
+        <p><b>5:</b> Termination of this letter of engagement shall not affect the obligations of the parties that have been incurred prior to such termination and SOURCE ONE shall promptly settle all your dues after making the applicable deductions.</p>
+        <p><b>6:</b> You agree to defend, indemnify and hold SOURCE ONE or the Client harmless from any and all claims, damages, liability, attorney’s fees and expenses on account of your failure to satisfy any of your obligations under this work assignment letter or for misconduct or for violation of any law or creation of any legal liability by you.</p>
+        <p><b>7:</b> Any dispute between you and SOURCE ONE shall be referred to a sole arbitrator appointed by SOURCE ONE the arbitration shall be conducted in English language, in accordance with the Arbitration and Conciliation Act 1996, at Bangalore, Karnataka, India. This Engagement Letter shall be governed by the laws of India.</p>
+      </div>
+
+      <!-- Footer Page 1 -->
+      <div class="footer">
+        <hr>
+        <p><b>Address:</b> #49/3,MEC Road, Industrial Subrub, Marappanapalya, Yeshwanthpura, Bengaluru - 560022</p>
+      </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="a4-sheet page-break" id="page2">
+      <div class="header-row">
+        <div class="header-left">
+          <img src="https://res.cloudinary.com/dtwcxssvj/image/upload/v1746523573/SourceOneLogo_ubsxye.png" alt="logo">
+        </div>
+        <div class="header-right">
+          <div><b>Email : sourceonelokesh@rediffmail.com</b></div>
+          <div><b>sourceone.chandan@gmail.com</b></div>
+          <div class="mobile">Mobile: 9741965944, 080-23476868</div>
+        </div>
+      </div>
+
+      <div class="body">
+        <p><b>9:</b> Details of your salary breakup will be as per the Annexure attached herein. You hereby authorize SOURCE ONE to make all salary payments required to be made to you by SOURCE ONE including all reimbursements either by way of Cheque or by directly crediting the amounts to your bank account.</p>
+        <p><b>10:</b> You shall be subject to background check and in the even the background check is negative, the company reserves the right to terminate your employment without any further notice.</p>
+        <p><b>11:</b> Please note that we want to keep payout time cycle of 21st to 20th of every month, salary payout will happen by 9th of next month.</p>
+        <p><b>12:</b> You will be entitled to an employer’s contribution of Provident fund to the extent of 12% of your basic salary and applicable ESI contribution. You will also be covered under Medical and Accident Insurance and will be entitled to all other statutory benefits whichever is applicable during the contract period. It is hereby clarified that if you fail to submit the ESIC, PF, Gratuity nomination forms together with any other document as required under the applicable labor legislations, SOURCE ONE shall not incur any liability with regards to any Claims under the said applicable labor legislations.</p>
+        <p><b>13:</b> In addition to the terms contained herein, your relationship with SOURCE ONE may be subject to such other additional terms and conditions as may be communicated to you from time to time in writing by SOURCE ONE and you hereby agree to have read and clearly understood the terms of employment provided in the Service Rules, which is attached herein.</p>
+        <p><b>14:</b> During your employment with SOURCE ONE, if we find any irregularity or insufficiency in the documents submitted by you, this Appointment Letter would stand cancelled / revoked.</p>
+        <p><b>15:</b> The nature of your relationship with SOURCE ONE will be that of contract of service from to Upon expiry or termination of the work Assignment, your employment with SOURCE ONE shall stand terminated forthwith.</p>
+        <p><b>16:</b> You shall not, either during or after termination of your employment with client give out to any third part by word of mouth or otherwise, the Proprietary and/or Confidential Information of the Company, that shall include but not limited to all information, software (whether in object or source code), statistics, data, data base, knowledge, trade secrets, inventions, products detail, know- how, formula, processes, designs, drawings, charts, maps, concepts, ideas, systems, project plans, business plans, client details, security information, any other creations of what so ever nature, kind or description, organizational matters pertaining to company or our client. Further, you shall not at any time, whether during or after the period of employment, use such Proprietary or Confidential information or any part thereof, for your own benefit or for the benefit to fan person, firm, company or other legal entity other that our client. This non-disclosure obligations enumerated above shall be binding on you at all times, irrespective of whether you continue to be employed by the company or not.</p>
+        <p><b>17:</b> This appointment letter shall be co-terminus with the agreement we have with our client.</p>
+
+        <div class="sign-row">
+          <div class="sign-box">
+            Employee Name: <b id="preview-employee-name">________</b>
+            <img id="employee-signature-image" class="sign-image" src="" style="display:none;">
+            <div style="margin-top:0.1cm;font-size:0.32cm;color:black;"><b>Accepted and Agreed</b></div>
+          </div>
+          <div class="sign-box" style="text-align:right;">
+            <div>Source One</div><b>Chandan Lokesh</b>
+            <img id="proprietor-signature" class="sign-image" src="signature.png">
+            <div style="margin-top:0.1cm;font-size:0.32cm;color:black;"><b>Proprietor</b></div>
           </div>
         </div>
+      </div>
+
+      <!-- Footer Page 2 -->
+      <div class="footer">
+        <hr>
+        <p><b>Address:</b> #49/3,MEC Road, Industrial Subrub, Marappanapalya, Yeshwanthpura, Bengaluru - 560022</p>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <script>
@@ -439,15 +468,56 @@ button:not(.primary){
   document.getElementById('clear-sig').addEventListener('click',()=>{ctx.clearRect(0,0,canvas.width,canvas.height);sigImg.style.display='none';sigImg.src='';});
   document.getElementById('save-sig').addEventListener('click',()=>{sigImg.src=canvas.toDataURL('image/png');sigImg.style.display='block';});
 
-  document.getElementById('generateBtn').addEventListener('click',async()=>{
-    if(!sigImg.src){sigImg.src=canvas.toDataURL('image/png');sigImg.style.display='block';}
-    document.getElementById('left-panel').style.display='none';
-    const name=(emp.value.trim()||'Unknown').replace(/\s+/g,'_');
-    const opt={margin:1,filename:`EngagementLetter_${name}.pdf`,image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,logging:false,useCORS:true},jsPDF:{unit:'cm',format:'a4',orientation:'portrait'}};
-    try{await html2pdf().set(opt).from(document.getElementById('preview')).save();}
-    catch(err){console.error(err);alert('Error generating PDF.');}
-    document.getElementById('left-panel').style.display='block';
-  });
+ document.getElementById('generateBtn').addEventListener('click', async () => {
+  if(!sigImg.src){sigImg.src = canvas.toDataURL('image/png'); sigImg.style.display='block';}
+  document.getElementById('left-panel').style.display='none';
+  const name = (emp.value.trim() || 'Unknown').replace(/\s+/g,'_');
+  const opt = {
+    margin: 1,
+    filename: `EngagementLetter_${name}.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, logging: false, useCORS: true },
+    jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
+  };
+
+  try {
+    // 🔹 Instead of saving directly, get PDF Blob
+    const pdfBlob = await html2pdf().set(opt).from(document.getElementById('preview')).outputPdf('blob');
+
+    // Create a temporary object URL for sharing
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+
+    // Prompt user to share via native share dialog (mobile supported)
+    if (navigator.share) {
+      await navigator.share({
+        title: 'Engagement Letter',
+        text: 'Here is the generated engagement letter PDF.',
+        files: [new File([pdfBlob], `EngagementLetter_${name}.pdf`, { type: 'application/pdf' })]
+      });
+    } else {
+      // Fallback for browsers that don't support navigator.share
+      const encodedUrl = encodeURIComponent(pdfUrl);
+      const whatsapp = `https://wa.me/?text=Here%20is%20your%20Engagement%20Letter:%20${encodedUrl}`;
+      const gmail = `mailto:?subject=Engagement%20Letter&body=Download%20your%20Engagement%20Letter%20here:%20${encodedUrl}`;
+      
+      const shareDiv = document.createElement('div');
+      shareDiv.innerHTML = `
+        <div style="text-align:center;margin-top:20px;">
+          <h3>Share PDF:</h3>
+          <a href="${whatsapp}" target="_blank" style="margin-right:12px;">📱 WhatsApp</a>
+          <a href="${gmail}" target="_blank" style="margin-right:12px;">📧 Gmail</a>
+          <a href="${pdfUrl}" target="_blank">🌐 View PDF</a>
+        </div>`;
+      document.body.appendChild(shareDiv);
+      alert('PDF ready! Use the links below to share.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Error generating PDF.');
+  }
+  document.getElementById('left-panel').style.display = 'block';
+});
+
 })();
 </script>
 </body>
