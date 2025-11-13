@@ -469,53 +469,55 @@ button:not(.primary){
   document.getElementById('save-sig').addEventListener('click',()=>{sigImg.src=canvas.toDataURL('image/png');sigImg.style.display='block';});
 
  document.getElementById('generateBtn').addEventListener('click', async () => {
-  if(!sigImg.src){sigImg.src = canvas.toDataURL('image/png'); sigImg.style.display='block';}
-  document.getElementById('left-panel').style.display='none';
-  const name = (emp.value.trim() || 'Unknown').replace(/\s+/g,'_');
+  if (!sigImg.src) {
+    sigImg.src = canvas.toDataURL('image/png');
+    sigImg.style.display = 'block';
+  }
+
+  // Hide left panel for clean PDF
+  const leftPanel = document.getElementById('left-panel');
+  leftPanel.style.display = 'none';
+
+  // ✅ Force desktop layout even on mobile
+  const preview = document.getElementById('preview');
+  const originalStyle = preview.getAttribute('style') || '';
+  preview.style.width = '21cm';
+  preview.style.minHeight = '29.7cm';
+  preview.style.transform = 'none';
+  preview.style.background = 'white';
+  preview.style.margin = '0 auto';
+  preview.style.padding = '0';
+
+  // Also disable responsive CSS for a moment
+  const styleTag = document.createElement('style');
+  styleTag.innerHTML = `
+    @media (max-width:900px) {
+      .app, .panel-right, .a4-sheet, .body, .header-row, .sign-row {
+        all: unset !important;
+      }
+    }`;
+  document.head.appendChild(styleTag);
+
+  const name = (emp.value.trim() || 'Unknown').replace(/\s+/g, '_');
   const opt = {
-    margin: 1,
+    margin: 0,
     filename: `EngagementLetter_${name}.pdf`,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, logging: false, useCORS: true },
+    html2canvas: { scale: 2, useCORS: true, logging: false },
     jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
   };
 
   try {
-    // 🔹 Instead of saving directly, get PDF Blob
-    const pdfBlob = await html2pdf().set(opt).from(document.getElementById('preview')).outputPdf('blob');
-
-    // Create a temporary object URL for sharing
-    const pdfUrl = URL.createObjectURL(pdfBlob);
-
-    // Prompt user to share via native share dialog (mobile supported)
-    if (navigator.share) {
-      await navigator.share({
-        title: 'Engagement Letter',
-        text: 'Here is the generated engagement letter PDF.',
-        files: [new File([pdfBlob], `EngagementLetter_${name}.pdf`, { type: 'application/pdf' })]
-      });
-    } else {
-      // Fallback for browsers that don't support navigator.share
-      const encodedUrl = encodeURIComponent(pdfUrl);
-      const whatsapp = `https://wa.me/?text=Here%20is%20your%20Engagement%20Letter:%20${encodedUrl}`;
-      const gmail = `mailto:?subject=Engagement%20Letter&body=Download%20your%20Engagement%20Letter%20here:%20${encodedUrl}`;
-      
-      const shareDiv = document.createElement('div');
-      shareDiv.innerHTML = `
-        <div style="text-align:center;margin-top:20px;">
-          <h3>Share PDF:</h3>
-          <a href="${whatsapp}" target="_blank" style="margin-right:12px;">📱 WhatsApp</a>
-          <a href="${gmail}" target="_blank" style="margin-right:12px;">📧 Gmail</a>
-          <a href="${pdfUrl}" target="_blank">🌐 View PDF</a>
-        </div>`;
-      document.body.appendChild(shareDiv);
-      alert('PDF ready! Use the links below to share.');
-    }
+    await html2pdf().set(opt).from(preview).save();
   } catch (err) {
     console.error(err);
     alert('Error generating PDF.');
   }
-  document.getElementById('left-panel').style.display = 'block';
+
+  // ✅ Restore original styles
+  preview.setAttribute('style', originalStyle);
+  styleTag.remove();
+  leftPanel.style.display = 'block';
 });
 
 })();
