@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="icon" type="image/png" href="SourceOnebg.png">
 <title>Source One - Engagement Letter (2 Page A4)</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
@@ -127,7 +128,6 @@ button:not(.primary){
 }
 .header-left img{height:1.4cm;}
 .header-right{text-align:right;font-size:0.38cm;line-height:1.05;}
-.mobile{color:var(--brand);font-weight:700;display:block;margin-top:0.05cm;}
 .body{font-size:0.36cm;color:#333;line-height:1.4;}
 .body p{margin:0 0 0.3cm 0;text-align:justify;}
 .body ol{margin:0 0 0.28cm 0.4cm;padding-left:0.2cm;}
@@ -169,56 +169,7 @@ button:not(.primary){
   .a4-sheet{box-shadow:none;border-radius:0;}
 }
 
-/* ✅ MOBILE RESPONSIVE FIXES */
-@media (max-width:900px){
-  .app{
-    flex-direction:column;
-    height:auto;
-    padding:12px;
-  }
-  .panel-left{
-    width:100%;
-    max-width:100%;
-    border-radius:8px;
-    order:1;
-  }
-  .panel-right{
-    order:2;
-    padding:10px 0;
-  }
-  .a4-sheet{
-    width:100%;
-    min-height:auto;
-    margin-bottom:20px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
-    border-radius:8px;
-    padding:12px;
-  }
-  .header-row{
-    flex-direction:column;
-    text-align:center;
-    gap:6px;
-  }
-  .header-left img{
-    height:1.2cm;
-  }
-  .header-right{
-    font-size:12px;
-    text-align:center;
-  }
-  .body{
-    font-size:13px;
-    line-height:1.5;
-  }
-  .sign-row{
-    flex-direction:column;
-    gap:10px;
-    text-align:center;
-  }
-  .sign-box{
-    width:100%;
-  }
-  /* -------- PDF / Print Mode: Always Use Desktop A4 Style -------- */
+
 @media print {
   body {
     -webkit-print-color-adjust: exact !important;
@@ -258,22 +209,6 @@ button:not(.primary){
   }
 }
 
-/* -------- Force desktop layout inside PDF even on mobile -------- */
-#preview {
-  width: 21cm !important;
-  min-height: 29.7cm !important;
-  margin: 0 auto;
-  background: white;
-}
-
-@media screen and (max-width: 900px) {
-  #preview {
-    transform: scale(1);
-    transform-origin: top center;
-  }
-}
-
-}
 </style>
 </head>
 <body>
