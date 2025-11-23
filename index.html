@@ -390,21 +390,24 @@ document.getElementById('showPreview').addEventListener('click', () => {
 
 /* ---------- High-Quality Print PDF ---------- */
 document.getElementById('downloadPrint').addEventListener('click', () => {
-
-  /* Set dynamic filename */
+  // Get employee name
   const emp = document.getElementById('employeeName').value.trim() || 'Employee';
+  
+  // Backup old title
   const oldTitle = document.title;
+  
+  // Set new title
   document.title = `T&C - ${emp}`;
 
-  /* Inject print quality fixes */
+  // Print
   window.print();
 
-  /* Restore */
+  // Restore old title after printing
   setTimeout(() => {
     document.title = oldTitle;
-    style.remove();
   }, 500);
 });
+
 
 
 /* ---------- Default dates on load ---------- */
