@@ -67,6 +67,43 @@
     .preview-wrap { width:100%!important; }
     .a4 { box-shadow:none!important; border-radius:0; padding:18mm!important; }
   }
+  /* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 12px;
+  }
+
+  .page-input {
+    padding: 15px;
+  }
+
+  .page-input h2 {
+    font-size: 20px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input[type="text"], input[type="date"] {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .page-input div[style*="display:flex"] {
+    flex-direction: column; /* stack start/end date vertically */
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  #sig-canvas {
+    height: 120px;
+  }
+}
+
 </style>
 </head>
 <body>
