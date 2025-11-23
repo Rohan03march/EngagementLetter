@@ -218,35 +218,6 @@
       </div>
     </div>
   </div>
-  <div id="pdfPreviewModal" style="
-  display: none;
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.8);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  overflow:auto;
-">
-  <div id="pdfPreviewContent" style="
-    background:white;
-    padding:10px;
-    width:95%;
-    max-width:800px;
-    min-height:90%;
-    box-shadow: 0 0 15px #000;
-    position:relative;
-  ">
-    <button id="closePreview" style="
-      position:absolute; top:5px; right:5px; background:red; color:white; border:none; padding:5px 10px; font-weight:bold; cursor:pointer;
-    ">Close</button>
-    <iframe id="pdfPreviewFrame" style="width:100%; height:100%; border:none;"></iframe>
-  </div>
-</div>
-
 </div>
 
 <script>
@@ -366,69 +337,22 @@ document.getElementById('showPreview').addEventListener('click', () => {
 
 
 /* ---------- High-Quality Print PDF ---------- */
-document.getElementById('downloadPrint').addEventListener('click', async () => {
+document.getElementById('downloadPrint').addEventListener('click', () => {
+
+  /* Set dynamic filename */
   const emp = document.getElementById('employeeName').value.trim() || 'Employee';
-  const payslip = document.getElementById('previewPage');
-  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  const oldTitle = document.title;
+  document.title = `T&C - ${emp}`;
 
-  if (!payslip) return alert('Payslip preview not found.');
+  /* Inject print quality fixes */
+  window.print();
 
-  if (!isMobile) {
-    // Desktop: just print
-    window.print();
-  } else {
-    // Mobile: generate PDF preview
-    const loader = document.getElementById('pdfLoader');
-    loader.style.display = 'flex';
-
-    // Wait for all images to load
-    const images = payslip.querySelectorAll('img');
-    let loadedCount = 0;
-
-    const checkLoaded = () => {
-      loadedCount++;
-      if (loadedCount === images.length) generatePDF();
-    };
-
-    images.forEach(img => {
-      if (img.complete) {
-        loadedCount++;
-      } else {
-        img.onload = checkLoaded;
-        img.onerror = checkLoaded;
-      }
-    });
-
-    if (loadedCount === images.length) generatePDF();
-
-    function generatePDF() {
-      html2pdf().set({
-        margin: 0.3,
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-      }).from(payslip).outputPdf('blob').then(blob => {
-        const pdfUrl = URL.createObjectURL(blob);
-
-        // Show in iframe preview
-        const modal = document.getElementById('pdfPreviewModal');
-        const iframe = document.getElementById('pdfPreviewFrame');
-        iframe.src = pdfUrl;
-        modal.style.display = 'flex';
-
-        // Hide loader
-        loader.style.display = 'none';
-      });
-    }
-  }
+  /* Restore */
+  setTimeout(() => {
+    document.title = oldTitle;
+    style.remove();
+  }, 500);
 });
-
-// Close preview
-document.getElementById('closePreview').addEventListener('click', () => {
-  const modal = document.getElementById('pdfPreviewModal');
-  modal.style.display = 'none';
-});
-
-
 
 
 /* ---------- Default dates on load ---------- */
