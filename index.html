@@ -67,6 +67,21 @@
     .preview-wrap { width:100%!important; }
     .a4 { box-shadow:none!important; border-radius:0; padding:18mm!important; }
   }
+
+  @media (max-width: 768px), print {
+  .a4 {
+    position: static !important; /* let page flow naturally */
+    min-height: auto !important;  /* auto height to fit content */
+    margin: 0 !important;         /* remove extra spacing */
+    padding: 18mm !important;     /* keep consistent padding */
+  }
+
+  .footer {
+    position: static !important;  /* footer flows naturally at bottom */
+    margin-top: 20px;
+  }
+}
+
   /* Responsive adjustments */
 @media (max-width: 768px) {
   .container {
