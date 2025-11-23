@@ -64,24 +64,24 @@
   .page-preview{display:none}
   @media print{
     .page-input, .controls { display:none !important; }
-    .preview-wrap { width:100%!important; }
-    .a4 { box-shadow:none!important; border-radius:0; padding:18mm!important; }
+   .preview-wrap {
+    width: 100% !important;
+    margin: 0 auto;
   }
 
-  @media (max-width: 768px), print {
   .a4 {
-    position: static !important; /* let page flow naturally */
-    min-height: auto !important;  /* auto height to fit content */
-    margin: 0 !important;         /* remove extra spacing */
-    padding: 18mm !important;     /* keep consistent padding */
+    margin: 0 !important;          /* remove bottom spacing between pages */
+    padding-top: 10mm !important;  /* optional: reduce top padding */
+    padding-bottom: 18mm !important;
   }
 
   .footer {
-    position: static !important;  /* footer flows naturally at bottom */
-    margin-top: 20px;
+    position: absolute !important;
+    bottom: 18mm !important;
   }
-}
+  }
 
+  
   /* Responsive adjustments */
 @media (max-width: 768px) {
   .container {
