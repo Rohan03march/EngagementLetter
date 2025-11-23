@@ -342,8 +342,8 @@ document.getElementById('saveSig').addEventListener('click', () => {
 
 
 /* ---------- Auto-update endDate & engageDate when startDate changes ---------- */
-document.getElementById('endDate').readOnly = true;
-document.getElementById('engageDate').readOnly = true;
+document.getElementById('endDate').disabled = true;
+document.getElementById('engageDate').disabled = true;
 
 document.getElementById('startDate').addEventListener('change', () => {
   const s = document.getElementById('startDate').value;
