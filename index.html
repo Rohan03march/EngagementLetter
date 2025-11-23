@@ -218,6 +218,25 @@
       </div>
     </div>
   </div>
+  <!-- Add this in your HTML somewhere (e.g., inside body) -->
+<div id="pdfLoader" style="
+  display: none;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+">
+  Generating PDF...
+</div>
+
 </div>
 
 <script>
@@ -340,43 +359,63 @@ document.getElementById('showPreview').addEventListener('click', () => {
 document.getElementById('downloadPrint').addEventListener('click', async () => {
   const emp = document.getElementById('employeeName').value.trim() || 'Employee';
   const payslip = document.getElementById('previewPage');
+  const loader = document.getElementById('pdfLoader');
 
   if (!payslip) return alert('Payslip preview not found.');
 
-  // Simple mobile detection
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
   if (!isMobile) {
     // Desktop: just print
     window.print();
   } else {
-    // Mobile: generate PDF blob
-    const opt = {
-      margin: 0.3,
-      filename: `${emp}_Payslip.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, logging: true },
-      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    // Mobile: show loader
+    loader.style.display = 'flex';
+
+    // Wait for images/signature to load
+    const images = payslip.querySelectorAll('img');
+    let loadedCount = 0;
+
+    const checkLoaded = () => {
+      loadedCount++;
+      if (loadedCount === images.length) {
+        generatePDF();
+      }
     };
 
-    html2pdf().set(opt).from(payslip).outputPdf('blob').then(blob => {
-      // Create a temporary URL for the PDF
-      const pdfUrl = URL.createObjectURL(blob);
-
-      // Trigger download
-      const a = document.createElement('a');
-      a.href = pdfUrl;
-      a.download = `${emp}_Payslip.pdf`;
-      a.click();
-
-      // Optional: Open WhatsApp share link with URL
-      // const waMessage = encodeURIComponent(`Hello! Here is your payslip: ${pdfUrl}`);
-      // const waLink = `https://wa.me/?text=${waMessage}`;
-      // window.open(waLink, '_blank');
-
-      // Clean up URL after 1 minute
-      setTimeout(() => URL.revokeObjectURL(pdfUrl), 60000);
+    images.forEach(img => {
+      if (img.complete) {
+        loadedCount++;
+      } else {
+        img.onload = checkLoaded;
+        img.onerror = checkLoaded;
+      }
     });
+
+    if (loadedCount === images.length) generatePDF();
+
+    function generatePDF() {
+      const opt = {
+        margin: 0.3,
+        filename: `${emp}_Payslip.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(payslip).outputPdf('blob').then(blob => {
+        const pdfUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = pdfUrl;
+        a.download = `${emp}_T&C.pdf`;
+        a.click();
+
+        // Hide loader
+        loader.style.display = 'none';
+
+        setTimeout(() => URL.revokeObjectURL(pdfUrl), 60000);
+      });
+    }
   }
 });
 
