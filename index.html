@@ -16,7 +16,21 @@
   }
   html,body{height:100%; margin:0; font-family: "Roboto", sans-serif; background:#f2f4f8; color:var(--text);}
   .container{max-width:1100px;margin:20px auto;padding:20px;}
-  button{cursor:pointer;border:none;padding:10px 14px;border-radius:8px;background:var(--brand);color:#fff;font-weight:600;margin-right:8px}
+  button {
+  cursor: pointer;
+  border: none;
+  padding: 12px 20px;      /* increased padding for bigger button */
+  border-radius: 8px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 600;
+  margin-right: 8px;
+  min-width: 150px;        /* ensures button has a bigger width */
+  text-align: center;      /* center the text */
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
   button.alt{background:#666}
 
   /* form */
@@ -266,7 +280,7 @@
       </article>
 
       <div style="margin:18px 0" class="controls">
-        <button id="downloadPrint">Print</button>
+        <button id="downloadPrint">Print & Share</button>
       </div>
     </div>
   </div>
